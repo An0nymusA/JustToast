@@ -1,0 +1,86 @@
+// Colors
+$toast-background: var(--toast-background);
+$toast-foreground: var(--toast-foreground);
+$toast-secondary: var(--toast-secondary);
+
+$toast-border: var(--toast-border);
+
+$toast-colors: (
+    'green': var(--toast-green),
+    'red': var(--toast-red),
+    'other': var(--toast-other)
+);
+
+.toast {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.40) 0px 0 6px 0px,
+        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    margin: 5px;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $toast-background;
+    color: $toast-foreground;
+    min-height: 50px;
+    backdrop-filter: blur(5px);
+
+    &__wrapper {
+        transform-origin: top;
+        width: fit-content;
+        overflow: hidden;
+    }
+
+    @each $name, $color in $toast-colors {
+        &.#{$name} {
+            border: $toast-border $color;
+            .toast__icon {
+                color: $color;
+            }
+        }
+    }
+
+    &.loading {
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(359deg);
+            }
+        }
+
+        .toast__icon {
+            animation: rotate 4s linear infinite;
+        }
+    }
+
+    span {
+        display: flex;
+
+        &.toast__icon {
+            color: $toast-secondary;
+            margin-left: 7px;
+
+            svg {
+                height: 30px;
+                width: auto;
+            }
+        }
+        &:not(.toast__icon){
+            padding: 0 10px;
+        }
+    }
+
+    &-container {
+        z-index: 999;
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        align-items: flex-end;
+    }
+}
