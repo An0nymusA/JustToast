@@ -8,7 +8,7 @@ const createElement = (name, classes = [], content = '') => {
 class toast {
     static wrapper
     static reverseOrder = true
-    static defaultDuration = -1
+    static defaultDuration = 2000
     static icons = {
         success: `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class="icon icon-tabler icon-tabler-square-check" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z"/><rect width="16" height="16" x="4" y="4" rx="2"/><path d="m9 12 2 2 4-4"/></svg>`,
         error: `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class="icon icon-tabler icon-tabler-square-x" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z"/><rect width="16" height="16" x="4" y="4" rx="2"/><path d="m10 10 4 4m0-4-4 4"/></svg>`,
