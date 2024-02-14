@@ -1,15 +1,14 @@
 .toast {
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 0 6px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  border-radius: 8px;
   margin: 5px;
-  padding: 0 5px;
+  min-width: 150px;
+  min-height: 50px;
+  padding: 8px 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--toast-background);
-  color: var(--toast-foreground);
-  min-height: 50px;
   backdrop-filter: blur(5px);
+  will-change: transform;
 }
 .toast__wrapper {
   transform-origin: top;
@@ -17,22 +16,31 @@
   overflow: hidden;
 }
 .toast.green {
-  border: var(--toast-border) var(--toast-green);
+  background-color: var(--toast-green-background);
+  color: var(--toast-green-text);
+  border: var(--toast-green-border);
 }
 .toast.green .toast__icon {
-  color: var(--toast-green);
+  color: var(--toast-green-text);
 }
 .toast.red {
-  border: var(--toast-border) var(--toast-red);
+  background-color: var(--toast-red-background);
+  color: var(--toast-red-text);
+  border: var(--toast-red-border);
 }
 .toast.red .toast__icon {
-  color: var(--toast-red);
+  color: var(--toast-red-text);
 }
 .toast.other {
-  border: var(--toast-border) var(--toast-other);
+  background-color: var(--toast-other-background);
+  color: var(--toast-other-text);
+  border: var(--toast-other-border);
 }
 .toast.other .toast__icon {
-  color: var(--toast-other);
+  color: var(--toast-other-text);
+}
+.toast.loading {
+  will-change: transform;
 }
 @keyframes rotate {
   0% {
@@ -49,11 +57,10 @@
   display: flex;
 }
 .toast span.toast__icon {
-  color: var(--toast-secondary);
   margin-left: 7px;
 }
 .toast span.toast__icon svg {
-  height: 30px;
+  height: 25px;
   width: auto;
 }
 .toast span:not(.toast__icon) {
@@ -62,13 +69,29 @@
 .toast-container {
   z-index: 999;
   position: fixed;
-  top: 0;
+  bottom: 0;
   right: 0;
   padding: 20px;
   display: flex;
   flex-direction: column;
   width: fit-content;
   align-items: flex-end;
+}
+.toast-container.toast-bottom {
+  top: unset;
+  bottom: 0;
+}
+.toast-container.toast-top {
+  bottom: unset;
+  top: 0;
+}
+.toast-container.toast-left {
+  right: unset;
+  left: 0;
+}
+.toast-container.toast-right {
+  left: unset;
+  right: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

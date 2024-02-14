@@ -1,86 +1,112 @@
 // Colors
-$toast-background: var(--toast-background);
-$toast-foreground: var(--toast-foreground);
-$toast-secondary: var(--toast-secondary);
-
-$toast-border: var(--toast-border);
-
 $toast-colors: (
-    'green': var(--toast-green),
-    'red': var(--toast-red),
-    'other': var(--toast-other)
+  "green": (
+    "background": var(--toast-green-background),
+    "text": var(--toast-green-text),
+    "border": var(--toast-green-border),
+  ),
+  "red": (
+    "background": var(--toast-red-background),
+    "text": var(--toast-red-text),
+    "border": var(--toast-red-border),
+  ),
+  "other": (
+    "background": var(--toast-other-background),
+    "text": var(--toast-other-text),
+    "border": var(--toast-other-border),
+  ),
 );
 
 .toast {
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.40) 0px 0 6px 0px,
-        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    margin: 5px;
-    padding: 0 5px;
+  border-radius: 8px;
+  // box-shadow: rgba(0, 0, 0, 0.4) 0px 0 6px 0px,
+  //   rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  margin: 5px;
+  min-width: 150px;
+  min-height: 50px;
+  padding: 8px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  will-change: transform;
+
+  &__wrapper {
+    transform-origin: top;
+    width: fit-content;
+    overflow: hidden;
+  }
+
+  @each $name, $colors in $toast-colors {
+    &.#{$name} {
+      background-color: map-get($colors, "background");
+      color: map-get($colors, "text");
+      border: map-get($colors, "border");
+      .toast__icon {
+        color: map-get($colors, "text");
+      }
+    }
+  }
+
+  &.loading {
+    will-change: transform;
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(359deg);
+      }
+    }
+
+    .toast__icon {
+      animation: rotate 4s linear infinite;
+    }
+  }
+
+  span {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: $toast-background;
-    color: $toast-foreground;
-    min-height: 50px;
-    backdrop-filter: blur(5px);
 
-    &__wrapper {
-        transform-origin: top;
-        width: fit-content;
-        overflow: hidden;
+    &.toast__icon {
+      margin-left: 7px;
+
+      svg {
+        height: 25px;
+        width: auto;
+      }
     }
-
-    @each $name, $color in $toast-colors {
-        &.#{$name} {
-            border: $toast-border $color;
-            .toast__icon {
-                color: $color;
-            }
-        }
+    &:not(.toast__icon) {
+      padding: 0 10px;
     }
+  }
 
-    &.loading {
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(359deg);
-            }
-        }
+  &-container {
+    z-index: 999;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: flex-end;
 
-        .toast__icon {
-            animation: rotate 4s linear infinite;
-        }
+    &.toast-bottom {
+      top: unset;
+      bottom: 0;
     }
-
-    span {
-        display: flex;
-
-        &.toast__icon {
-            color: $toast-secondary;
-            margin-left: 7px;
-
-            svg {
-                height: 30px;
-                width: auto;
-            }
-        }
-        &:not(.toast__icon){
-            padding: 0 10px;
-        }
+    &.toast-top {
+      bottom: unset;
+      top: 0;
     }
-
-    &-container {
-        z-index: 999;
-        position: fixed;
-        top: 0;
-        right: 0;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-        align-items: flex-end;
+    &.toast-left {
+      right: unset;
+      left: 0;
     }
+    &.toast-right {
+      left: unset;
+      right: 0;
+    }
+  }
 }
