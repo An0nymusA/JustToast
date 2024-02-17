@@ -20,10 +20,10 @@ toast.success("Success message");
 toast.error("Error message");
 ```
 
-### `toast.message(...)`
+### `toast.info(...)`
 
 ```javascript
-toast.message("Simple message");
+toast.info("Simple message");
 ```
 
 ### `toast.promise(...)`
@@ -77,6 +77,7 @@ toast.reverseOrder = false; // Most recent toasts will be on bottom
 
 ```javascript
 toast.icons = {
+  info: "<svg></svg>",
   success: "<svg></svg>",
   errror: "<svg></svg>",
   loading: "<svg></svg>",
