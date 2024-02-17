@@ -239,20 +239,35 @@ class toast {
   /**
    * @param {string} message
    */
-  static info = (message) => {
-    toast.#addToast({ icon: toast.icons.info, color: "other", message });
+  static info = (message, duration) => {
+    toast.#addToast({
+      icon: toast.icons.info,
+      color: "other",
+      message,
+      duration,
+    });
   };
   /**
    * @param {string} message
    */
-  static success = (message) => {
-    toast.#addToast({ icon: toast.icons.success, color: "green", message });
+  static success = (message, duration) => {
+    toast.#addToast({
+      icon: toast.icons.success,
+      color: "green",
+      message,
+      duration,
+    });
   };
   /**
    * @param {string} message
    */
-  static error = (message) => {
-    toast.#addToast({ icon: toast.icons.error, color: "red", message });
+  static error = (message, duration) => {
+    toast.#addToast({
+      icon: toast.icons.error,
+      color: "red",
+      message,
+      duration,
+    });
   };
   /**
    * @param {Promise<any>} promise
