@@ -30,6 +30,12 @@ $toast-colors: (
   align-items: center;
   backdrop-filter: blur(5px);
   will-change: transform;
+  font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    padding: 6px 3px;
+  }
 
   &__wrapper {
     transform-origin: top;
@@ -91,6 +97,10 @@ $toast-colors: (
     flex-direction: column;
     width: fit-content;
     align-items: flex-end;
+
+    @media (max-width: 768px) {
+      padding: 10px;
+    }
 
     &.toast-bottom {
       top: unset;

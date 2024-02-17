@@ -9,6 +9,13 @@
   align-items: center;
   backdrop-filter: blur(5px);
   will-change: transform;
+  font-size: 16px;
+}
+@media (max-width: 768px) {
+  .toast {
+    font-size: 13px;
+    padding: 6px 3px;
+  }
 }
 .toast__wrapper {
   transform-origin: top;
@@ -76,6 +83,11 @@
   flex-direction: column;
   width: fit-content;
   align-items: flex-end;
+}
+@media (max-width: 768px) {
+  .toast-container {
+    padding: 10px;
+  }
 }
 .toast-container.toast-bottom {
   top: unset;
